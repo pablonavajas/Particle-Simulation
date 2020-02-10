@@ -2,7 +2,8 @@ package simulation;
 
 public abstract class AbstractEvent implements Event {
 
-    // (it was empty, modified by Pablo)
+    // Hey Iura and Dave! I have added the comments just so you know what I modified
+    // (no internal variables given, created by Pablo)
     private final double time;
 
     /**

@@ -49,5 +49,10 @@ public class TestMinPriorityQueue {
     assertThat(queue.size(), is(7));
   }
 
+  @Test
+  public void arrayShouldBeEmpty(){
+    assertThat(queue.isEmpty(), is(true));
+  }
+
 
 }

@@ -45,7 +45,7 @@ public class TestMinPriorityQueue {
     queue.add(25);
 
     assertThat(queue.size(), is(8));
-    assertThat(queue.remove(), is(25));
+    assertThat(queue.remove(), is(4));
     assertThat(queue.size(), is(7));
   }
 

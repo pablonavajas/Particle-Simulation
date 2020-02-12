@@ -15,7 +15,6 @@ public class Tick extends AbstractEvent {
   public void happen(ParticleEventHandler h) {
     // As per spec: "the only thing it must do is make a callback to the ParticleEventHandler"
     h.reactTo(this);
-    System.out.println("TICK HAPPENED");
   }
 
   @Override

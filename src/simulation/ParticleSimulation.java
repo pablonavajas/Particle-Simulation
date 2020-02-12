@@ -24,21 +24,20 @@ public class ParticleSimulation implements Runnable, ParticleEventHandler {
     screen = new ParticlesView(name, m);
 
     //Initialize time
-    currentTime = 1;
 
     // Initialize a new queue of events
     queue = new MinPriorityQueue<>();
 
     // Add one tick as the first event
-    queue.add(new Tick(1));
-//    System.out.println("Added the first Tick");
+    Tick initialTick = new Tick(1);
+    queue.add(initialTick);
+    currentTime = initialTick.time();
 
 
     // Add predicted collision events for all particles
     // in their initial state
-    for (Collision c : m.predictAllCollisions(1)) {
+    for (Collision c : m.predictAllCollisions(currentTime)) {
       queue.add(c);
-      //     System.out.println("Added element from constructor");
     }
   }
 
@@ -61,15 +60,10 @@ public class ParticleSimulation implements Runnable, ParticleEventHandler {
     //if there is an event in the queue
     while (currentEvent != null) {
       //if event is valid
-      if (currentEvent instanceof Tick)
-        System.out.println("IT IS AN INSTANCE OF TICK");
-
       if (currentEvent.isValid()) {
-        System.out.println("Current Time: " + currentTime);
         double dt = currentEvent.time() - currentTime;
         currentTime = currentEvent.time();
         model.moveParticles(dt);
-        System.out.println(currentTime);
         currentEvent.happen(this);
       }
       currentEvent = queue.remove();
@@ -85,9 +79,8 @@ public class ParticleSimulation implements Runnable, ParticleEventHandler {
       e.printStackTrace();
     }
 
-    System.out.println("This screen should update");
     screen.update();
-    queue.add(new Tick(tick.time() + 1));
+    queue.add(new Tick(tick.time() + 1.0));
   }
 
   @Override
@@ -103,8 +96,6 @@ public class ParticleSimulation implements Runnable, ParticleEventHandler {
         queue.add(c1);
       }
     }
-
-    System.out.println("SOME COLLISIONS");
 
   }
 }

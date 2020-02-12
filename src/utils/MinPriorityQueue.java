@@ -32,7 +32,7 @@ public class MinPriorityQueue<T extends Comparable<T>> {
     int parentPos = childPos / 2;
     T child = (T) queue[childPos];
     T parent = (T) queue[parentPos];
-    if (child.compareTo(parent) > 0) {
+    if (child.compareTo(parent) < 0) {
       queue[parentPos] = child;
       queue[childPos] = parent;
       compareToParent(parentPos);
@@ -73,7 +73,7 @@ public class MinPriorityQueue<T extends Comparable<T>> {
 
     int rightChildPos = parentPos * 2 + 1;
     if (queue[rightChildPos] == null) {
-      if (leftChild.compareTo(parent) > 0) {
+      if (leftChild.compareTo(parent) < 0) {
         queue[parentPos] = leftChild;
         queue[leftChildPos] = parent;
       }
@@ -82,11 +82,11 @@ public class MinPriorityQueue<T extends Comparable<T>> {
 
     T rightChild = (T) queue[rightChildPos];
     int toSwapPos = leftChildPos;
-    if (rightChild.compareTo(leftChild) > 0) {
+    if (rightChild.compareTo(leftChild) < 0) {
       toSwapPos = rightChildPos;
     }
     T childToSwap = (T) queue[toSwapPos];
-    if (childToSwap.compareTo(parent) > 0) {
+    if (childToSwap.compareTo(parent) < 0) {
       queue[parentPos] = childToSwap;
       queue[toSwapPos] = parent;
       compareToChildren(toSwapPos);

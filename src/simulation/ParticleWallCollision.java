@@ -1,9 +1,5 @@
 package simulation;
 
-import utils.List;
-
-import java.util.ArrayList;
-
 public class ParticleWallCollision extends Collision {
 
   private final Particle particle;

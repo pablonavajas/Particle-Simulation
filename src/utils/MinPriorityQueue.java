@@ -18,14 +18,15 @@ public class MinPriorityQueue<T extends Comparable<T>> {
    * Returns the number of elements currently in the queue.
    */
   public int size() {
-    return nextEmpty-1;
+    return nextEmpty - 1;
   }
 
   private void compareToParent(int childPos) {
     if (childPos <= 1) {
       if (childPos < 1) {
         throw (new IndexOutOfBoundsException("Went below 1"));
-      } return;
+      }
+      return;
     }
 
     int parentPos = childPos / 2;
@@ -38,7 +39,7 @@ public class MinPriorityQueue<T extends Comparable<T>> {
     }
   }
 
-  private void extendQ(){
+  private void extendQ() {
     Object[] newQ = new Object[queue.length * 2];
     System.arraycopy(queue, 0, newQ, 0, queue.length);
     queue = newQ;
@@ -58,13 +59,16 @@ public class MinPriorityQueue<T extends Comparable<T>> {
     nextEmpty++;
   }
 
-  private void compareToChildren(int parentPos){
+  private void compareToChildren(int parentPos) {
     T parent = (T) queue[parentPos];
 
     int leftChildPos = parentPos * 2;
-    if (queue[leftChildPos] == null) {
+    if (leftChildPos >= queue.length) {
+      return;
+    } else if (queue[leftChildPos] == null) {
       return;
     }
+
     T leftChild = (T) queue[leftChildPos];
 
     int rightChildPos = parentPos * 2 + 1;

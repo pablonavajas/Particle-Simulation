@@ -12,6 +12,7 @@ public abstract class Collision extends AbstractEvent {
 
   /**
    * Constructor for Collision
+   * Note: an array of maximum of two particles should be passed in
    */
   public Collision(double t, Particle[] ps) {
     // (it was empty, implemented by Pablo)
@@ -23,7 +24,7 @@ public abstract class Collision extends AbstractEvent {
     countA = ps[0].collisions();
 
     // There can only be one particle involved in the collision
-    if ((ps.length > 1) && (ps[1] != null)) {
+    if ((ps.length > 1)){
       countB = ps[1].collisions();
     } else {
       countB = -1;
@@ -39,11 +40,10 @@ public abstract class Collision extends AbstractEvent {
   public boolean isValid() {
     // (it was empty, implemented by Pablo)
     // Check if there have been any collisions after creation of event
-
     if (particles[0].collisions() != countA) {
       return false;
     }
-    if (particles[1] != null && particles[1].collisions() != countB) {
+    if ((particles.length > 1) && (particles[1].collisions() != countB)) {
       return false;
     }
     return true;

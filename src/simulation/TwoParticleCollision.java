@@ -14,7 +14,7 @@ public class TwoParticleCollision extends Collision {
 
   @Override
   public void happen(ParticleEventHandler h) {
-    particleA.collide(particleA, particleB);
+    Particle.collide(particleA, particleB);
     h.reactTo(this);
   }
 }

@@ -14,7 +14,7 @@ public class ParticleWallCollision extends Collision {
 
   @Override
   public void happen(ParticleEventHandler h) {
-    particle.collide(particle, wall);
+    Particle.collide(particle, wall);
     h.reactTo(this);
   }
 }

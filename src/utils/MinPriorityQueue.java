@@ -9,7 +9,7 @@ public class MinPriorityQueue<T extends Comparable<T>> {
   /**
    * Creates an empty queue.
    */
-  public MinPriorityQueue(Class<T> klazz) {
+  public MinPriorityQueue() {
     queue = new Object[INITIAL_SIZE];
     nextEmpty = 1;
   }

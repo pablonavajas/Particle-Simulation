@@ -19,7 +19,6 @@ public class ParticleSimulation implements Runnable, ParticleEventHandler {
    * Constructor.
    */
   public ParticleSimulation(String name, ParticlesModel m) {
-    // Constructor implemented by Yura
     model = m;
     screen = new ParticlesView(name, m);
 
@@ -53,7 +52,6 @@ public class ParticleSimulation implements Runnable, ParticleEventHandler {
     }
 
     screen.run();
-    // Implemented by Yura
     // Main operation of the simulation
     Event currentEvent = queue.remove();
 
@@ -72,7 +70,6 @@ public class ParticleSimulation implements Runnable, ParticleEventHandler {
 
   @Override
   public void reactTo(Tick tick) {
-    // Implemented by Yura
     try {
       Thread.sleep(FRAME_INTERVAL_MILLIS);
     } catch (InterruptedException e) {
@@ -85,7 +82,8 @@ public class ParticleSimulation implements Runnable, ParticleEventHandler {
 
   @Override
   public void reactTo(Collision c) {
-    Particle[] particles = c.getParticles(); //returns ann array of two or one particles
+    Particle[] particles = c.getParticles();
+    //returns an array of two or one particles
 
     for (Collision c1 : model.predictCollisions(particles[0], currentTime)) {
       queue.add(c1);

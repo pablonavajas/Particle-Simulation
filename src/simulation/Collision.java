@@ -27,8 +27,6 @@ public abstract class Collision extends AbstractEvent {
 
   /**
    * Returns true if this Collision is (still) valid.
-   * inspired by :
-   * https://github.com/fracpete/princeton-java-algorithms/blob/master/src/main/java/edu/princeton/cs/algorithms/CollisionSystem.java
    */
   @Override
   public boolean isValid() {

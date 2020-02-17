@@ -21,6 +21,11 @@ public class MinPriorityQueue<T extends Comparable<T>> {
     return nextEmpty - 1;
   }
 
+  /**
+   * Compares item at childPos with item at position childPos/2
+   * if "child" is smaller: swaps them and repeats for "child"
+   * at new position.
+   */
   private void compareToParent(int childPos) {
     if (childPos <= 1) {
       if (childPos < 1) {
@@ -43,6 +48,10 @@ public class MinPriorityQueue<T extends Comparable<T>> {
     }
   }
 
+  /**
+   * Doubles the size of the queue by creating a new one with
+   * double the size and copying the content
+   */
   private void extendQ() {
     Object[] newQ = new Object[queue.length * 2];
     System.arraycopy(queue, 0, newQ, 0, queue.length);
@@ -51,6 +60,7 @@ public class MinPriorityQueue<T extends Comparable<T>> {
 
   /**
    * Adds elem to the queue.
+   * Uses CompareToParent() to maintain order in amortised O(Log N)
    */
   public void add(T elem) {
     if (queue.length <= nextEmpty) {
@@ -63,6 +73,11 @@ public class MinPriorityQueue<T extends Comparable<T>> {
     nextEmpty++;
   }
 
+  /**
+   * Compares item at parentPos to items at positions:
+   * (parentPos * 2) and (parentPos * 2 + 1) to swap positions
+   * (if larger than the smallest)
+   */
   private void compareToChildren(int parentPos) {
     @SuppressWarnings("unchecked")
     T parent = (T) queue[parentPos];
@@ -104,6 +119,7 @@ public class MinPriorityQueue<T extends Comparable<T>> {
 
   /**
    * Removes, and returns, the element at the front of the queue.
+   * Uses CompareToChildren() to maintain order in amortised O(Log N)
    */
   public T remove() {
     if (nextEmpty == 1) {

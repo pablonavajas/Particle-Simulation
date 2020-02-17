@@ -119,7 +119,8 @@ public class MinPriorityQueue<T extends Comparable<T>> {
 
   /**
    * Removes, and returns, the element at the front of the queue.
-   * Uses CompareToChildren() to maintain order in amortised O(Log N)
+   * Puts the last element at the front of the queue and uses
+   * CompareToChildren() to restore order in amortised O(Log N)
    */
   public T remove() {
     if (nextEmpty == 1) {
